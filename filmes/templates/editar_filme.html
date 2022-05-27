@@ -1,0 +1,95 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Editar Filme{% endblock %}
+
+{% block content %}
+
+<style>
+
+    label{
+        display: block;
+        padding-right: 10px;
+    }
+
+    label[for=id_descricao]{
+        padding-top: 20px;
+        display: block;
+    }
+
+    label[for=id_assistiu]{
+        margin-top: 20px;
+    }
+
+    input[type=checkbox]{
+        display: inline-block;
+    }
+
+    input[type=text]{
+        width: 420px;
+    }
+
+    textarea{
+        display: block;
+        margin-bottom: 20px;
+        height: 150px;
+    }
+  
+    p{
+        color: #fff;
+    }
+
+    h5{
+        margin: 30px 0;
+        color: #fff;
+    }
+
+    .alerta_sucesso {
+        font-size: 15px;
+        color: #3e881c;
+        padding-top: 15px;
+    }
+
+    .alerta_erros {
+        font-size: 15px;
+        color: #bd3918;
+        padding-top: 15px;
+    }
+
+</style>
+
+    <div class="content">
+
+        {% if form.errors %}
+            <div class="alerta_erros">
+                <i class="fas fa-exclamation-triangle"></i>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        {% if is_valid %}
+            <div class="alerta_sucesso">
+                <i class="far fa-check-circle"></i> 
+                Filme foi editado com sucesso!
+            </div>
+            <style>
+                .form-edit{
+                    visibility: hidden;
+                }
+            </style>
+        {% endif %}
+
+        <div class="form-edit">
+            <h5><b>EDITAR FILME</b></h5>
+            <form action="{% url 'filmes:editar' id %}" method="post">
+                {% csrf_token %}
+
+                    <p>{{ form }}</p>   
+            
+                    <button type="submit" class="btn btn-primary">Editar</button>
+            </form>
+        </div>
+</div>
+
+{% endblock %}

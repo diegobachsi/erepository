@@ -1,0 +1,40 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}Cadastro ativado{% endblock %}
+
+{% block content %}
+
+            <style>
+
+				p{
+					color: #fff;
+				}
+
+            </style>
+
+			<div class="card">
+				<div class="card-header">
+					<h2>Conta ativada! <i class="far fa-check-circle"></i> 	</h2>
+				</div>
+
+				<div class="card-body">
+					
+                    <div class="msg">  
+                        
+                            <p>
+							 Sua conta foi ativada com sucesso!
+                            Já está apto para realizar seu acesso.</p>
+                    </div>
+		
+				</div>
+
+				<div class="card-footer">
+					<div class="d-flex justify-content-center links">
+						<a href="{% url 'contas:login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ir para Login</a>
+					</div>
+				</div>
+			</div>
+
+{% endblock %}

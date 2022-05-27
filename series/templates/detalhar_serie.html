@@ -1,0 +1,54 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Filmes{% endblock %}
+
+{% block content %}
+
+    <style>
+
+        #check_ok{
+            color: green;
+            margin-bottom: 20px;
+        }
+
+        #check_not_ok{
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .content-cards{
+            padding: 30px;
+            color: #fff;
+            background-color: black;
+        }
+
+        img{
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+
+    <div class="content-cards">
+
+              
+                    <h3>Título</h3>
+                    <p>{{ serie.titulo }}</p>
+
+                    <h3>Sinopse</h3>
+                    <p style="text-align: justify;">{{ serie.descricao }}</p>
+
+                    <h3>Poster</h3>
+                    <img src="{{ serie.url_imagem }}" style="height: 300px;width: 200px;" class="card-img-top" alt="..." />          
+
+                    <h3>Assistiu?</h3>
+                    {% if serie.assistiu %}
+                        <p>Sim <i id="check_ok" class="fa-solid fa-circle-check"></i></p>
+                    {% else %}
+                        <p>Não <i id="check_not_ok" class="fa-solid fa-circle-xmark"></i></p>
+                    {% endif %}
+    </div>
+
+{% endblock %}

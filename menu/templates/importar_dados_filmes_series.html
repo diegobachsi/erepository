@@ -1,0 +1,168 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+
+<style>
+
+    form{
+        margin: 0;
+        padding: 0;
+    }
+
+    input{
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    label{
+        color: #fff;
+        padding-right: 20px;
+    }
+
+    p{
+        margin-top: 30px;
+        padding-left: 12px;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .content-cards{
+            margin-top: 20px;
+			width: 50%;
+	}
+
+    h1{
+        color: rgb(207, 206, 216);
+    }
+
+    h5{
+        background-color: rgb(230, 155, 84);
+        text-align: center;
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 50px;
+        border: 1px solid #fff;
+        border-radius: 10px;
+        color: #000;
+    }
+
+    hr{
+        color: #fff;
+    }
+
+    .btn-importar{
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .alerta_sucesso {
+        font-size: 15px;
+        color: #3e881c;
+        padding-top: 15px;
+    }
+
+    .alerta_erros {
+        font-size: 15px;
+        color: #c7352b;
+        padding-top: 15px;
+    }
+
+    .not_encontrado {
+        font-size: 15px;
+        color: #e2a113;
+        margin-top: 150px;
+        padding: 10px;
+        border: 1px solid #e2a113;
+        border-radius: 10px;
+    }
+
+    .content{
+        display: grid;
+        grid-template-columns: 60% 40%;
+    }
+
+    .content-card{
+        padding-left: 75px;
+    }
+
+    #smile{
+        font-size: 20px;
+        display: block;
+        padding-bottom: 20px;
+    }
+
+</style>
+
+    <div class="content">
+        <div class="card-body">
+
+            {% if gravado %}
+                <div class="alerta_sucesso">
+                    <i class="far fa-check-circle"></i> 
+                    {{ tipo }} cadastrado com sucesso!
+                </div>
+                <style>
+                    h1, button, h5{
+                        visibility: hidden;
+                    }
+                </style>
+            {% endif %}
+            {% if gravado == False %}
+                <div class="alerta_erros">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ tipo }} já está cadastrado!
+                </div>
+                <style>
+                    h1, button, h5{
+                        visibility: hidden;
+                    }
+                </style>
+            {% endif %}
+            
+            <h1>Importar Dados</h1>
+
+            
+            <h5><i class="fa-solid fa-clapperboard"></i> Filmes ou Séries</h5>
+            <form action="{% url 'menu:importar_dados_filmes_series' %}" method="post">
+            {% csrf_token %}
+
+                {{ form.titulo }}
+
+                <button type="submit" class="btn btn-primary btn-importar">Importar</button>
+
+            </form>
+
+        </div>
+
+        <div class="content-card">
+
+            {% if is_valid %}
+                
+                    {% if existe %}
+                        <div class="card" style="width: 12rem;">
+                            <img src="{{ url_imagem }}" style="height: 300px;" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h4 class="card-title"> {{ titulo }}</h4>
+                                <a href="{% url 'menu:cadastrar_via_import' %}?titulo={{ titulo }}&tipo={{ tipo }}" class="btn btn-primary"><i class="fas fa-plus"></i> Cadastrar</a>
+                            </div>
+                        </div>
+                    {% else %}
+                            <p class="not_encontrado"><i id="smile" class="fa-solid fa-face-frown"></i> 
+                                Uhm que pena! Não localizei o filme ou série.</br></br>
+                                Tente pesquisar em inglês. <i class="fa-solid fa-face-smile-wink"></i>
+                            </p>
+                    {% endif %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+	<style>
+
+		.msg_erros{
+			color: rgb(201, 115, 16);
+		}
+
+		ul, li{
+			margin: 0;
+			list-style: none;
+		}
+
+	</style>
+
+			<div class="card">
+				<div class="card-header">
+					<h2>Cadastrar</h2>
+					{% if form.errors %}
+						
+						<div class="msg_erros">
+							<b><i class="fa-solid fa-circle-exclamation"></i> Atenção!</b>
+							{% if form.username.errors %}
+								{{ form.username.errors }}
+							{% endif %}
+						
+							{% if form.email.errors %}     
+								{{ form.email.errors }}
+							{% endif %}
+						
+							{% if form.password2.errors %}
+								{{ form.password2.errors }}
+							{% endif %}
+						</div>
+
+					{% endif %}
+				</div>
+
+				<div class="card-body">
+					<form action="{% url 'contas:register' %}" method="post">
+					{% csrf_token %}
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Usuário</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="fa-solid fa-user"></i></div>
+									{{ form.username }}
+									<!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Usuário">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Nome</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-n"></i></i></div>
+								  {{ form.first_name }}
+								  <!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Nome">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Sobrenome</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-s"></i></div>
+								  {{ form.last_name }} 
+								  <!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Sobrenome">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">E-mail</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-envelope"></i></div>
+								  {{ form.email }}
+								  <!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="E-mail">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Senha</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-key"></i></div>
+								  {{ form.password1 }} 
+								  <!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Senha">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Repetir Senha</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-key"></i></div>
+								  {{ form.password2 }}
+								  <!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Repetir Senha">-->
+								</div>
+							</div>
+						</div>
+				
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Cadastrar</button>
+						</div>
+
+					</form>
+
+				</div>
+
+				<div class="card-footer">
+					<div class="d-flex justify-content-center links">
+						<a href="{% url 'contas:login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ir para Login</a>
+					</div>
+				</div>
+
+			</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+			<style>
+
+				.msg_erros{
+					color: rgb(201, 115, 16);
+				}
+
+				ul, li{
+					margin: 0;
+					list-style: none;
+				}
+
+			</style>
+
+			<div class="card">
+				<div class="card-header">
+					<h2>Login</h2>
+					{% if messages %}
+						<div class="msg_erros">
+							{% for message in messages %}
+								{% if forloop.first %}
+									{{ message }}
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+
+				<div class="card-body">
+					<form action="{% url 'contas:login' %}" method="post">
+					{% csrf_token %}
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Usuário</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-user"></i></div>
+								  		{{ form.username }}
+								  		<!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Usuário">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group form-group">
+							<div class="col-12">
+								<label class="visually-hidden" for="inlineFormInputGroupUsername">Senha</label>
+								<div class="input-group">
+								  <div class="input-group-text"><i class="fa-solid fa-key"></i></div>
+								  		{{ form.password }}
+								  		<!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Senha">-->
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center remember">
+							<input type="checkbox">Lembre-me
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Entrar</button>
+						</div>
+
+					</form>
+				</div>
+
+				<div class="card-footer">
+					<div class="d-flex justify-content-center links">
+						Novo aqui?<a href="{% url 'contas:register' %}">Cadastre-se</a>
+					</div>
+
+					<div class="d-flex justify-content-center">
+						<a href="{% url 'contas:password_reset' %}">Esqueceu sua senha?</a>
+					</div>
+				</div>
+			</div>
+
+{% endblock %}

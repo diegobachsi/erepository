@@ -1,0 +1,44 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}Cadastro concluído{% endblock %}
+
+{% block content %}
+
+            <style>
+				
+				#color-green{
+                    color: #1dca34;
+                }
+
+				p{
+					color: #fff;
+				}
+
+            </style>
+
+			<div class="card">
+				<div class="card-header">
+					<h2>Cadastro realizado! <i id="color-green" class="far fa-check-circle"></i></h2>
+				</div>
+
+				<div class="card-body">
+					
+                    <div class="msg">  
+                        
+                            <p>Parabéns <b id="color-green">{{ form.first_name.value }} {{ form.last_name.value }},</b></p>
+                            <p>Seu cadastro foi finalizado, foi enviado o link de ativação para o e-mail:<b id="color-green"> {{ form.email.value }}.</b></p>
+                            <p>Após ativar o cadastro utilize seu usuário<b id="color-green"> {{ form.username.value }}</b> para realizar o login.</p>
+                    </div>
+		
+				</div>
+
+				<div class="card-footer">
+					<div class="d-flex justify-content-center links">
+						<a href="{% url 'contas:login' %}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Ir para Login</a>
+					</div>
+				</div>
+			</div>
+
+{% endblock %}

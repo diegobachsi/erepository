@@ -1,0 +1,45 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+
+<style>
+
+    #btn-json{
+        display: block !important;
+        width: 150px;
+        margin-top: 20px;
+    }
+
+    p{
+        margin-top: 30px;
+        padding-left: 12px;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .content-cards{
+            margin-top: 50px;
+			width: 50%;
+	}
+
+    h1{
+        color: rgb(207, 206, 216);
+    }
+
+</style>
+
+    <div class="content">
+        <div class="card-body">
+            
+            <h1>Exportar JSON</h1>
+
+            <a id ="btn-json" href="{% static 'json.zip' %}" class="btn btn-primary" download="todos_dados.zip"> Todos os Dados</a>
+       
+        </div>
+    </div>
+
+{% endblock %}

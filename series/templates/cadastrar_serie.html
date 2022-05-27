@@ -1,0 +1,73 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Cadastrar{% endblock %}
+
+{% block content %}
+
+<style>
+  
+    p{
+        color: #fff;
+    }
+
+    h5{
+        margin: 30px 0;
+        color: #fff;
+    }
+
+    .alerta_sucesso {
+        font-size: 15px;
+        color: #3e881c;
+        padding-top: 15px;
+    }
+
+    .alerta_erros {
+        font-size: 15px;
+        color: #bd3918;
+        padding-top: 15px;
+    }
+
+</style>
+
+    <div class="content">
+
+            {% if form.errors %}
+                <div class="alerta_erros">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+
+            {% if is_valid %}
+                <div class="alerta_sucesso">
+                    <i class="far fa-check-circle"></i> 
+                    Série foi cadastrado com sucesso!
+                </div>
+                <style>
+                    .form-cadastro{
+                        visibility: hidden;
+                    }
+                </style>
+            {% endif %}
+
+            <div class="form-cadastro">   
+                <h5><b>CADASTRAR SÉRIE</b></h5>
+                <form action="{% url 'series:cadastrar' %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-input-cadastrar">
+                        <p>{{ form.titulo }}</p>  
+                        <p>{{ form.descricao}}</p> 
+                        <p>{{ form.url_imagem }}</p> 
+                        <p>Assitiu? {{ form.assistiu }}</p> 
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+    </div>
+
+
+{% endblock %}

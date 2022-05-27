@@ -1,0 +1,100 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Livros{% endblock %}
+
+{% block content %}
+
+    <style>
+
+        #check_ok{
+            color: green;
+            margin-bottom: 20px;
+        }
+
+        #check_not_ok{
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        #nav_add{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #nav_add a{
+            margin-left: 20px;
+            background-color: rgb(85, 157, 238);
+        }
+
+        #nav_edit_delete{
+            text-align: center;
+            background-color: #fff;
+        }
+
+        #nav_edit_delete a{
+            margin: 20px;
+        }
+
+    </style>
+
+    <div class="content-cards">
+
+        <div id="nav_add">
+            <a href="{% url 'livros:cadastrar' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Cadastrar</a>
+            <a href="{% url 'livros:lidos' %}" class="btn btn-primary"><i class="fa-solid fa-circle-check"></i> Listar Lidos</a>
+            <a href="{% url 'livros:nao-lidos' %}" class="btn btn-primary"><i class="fa-solid fa-circle-xmark"></i> Listar não Lidos</a>
+        </div>
+
+        <div class="alerta_sucesso">
+            {% if foiDeletado %}
+                <i class="far fa-check-circle"></i>
+                O livro "{{ livro }}" foi deletado com sucesso!
+            {% endif %}
+
+            {% if foiCadastrado %}
+                <i class="far fa-check-circle"></i>
+                O livro "{{ livro }}" foi cadastrado com sucesso!
+            {% endif %}
+
+            {% if foiEditado %}
+                <i class="far fa-check-circle"></i>
+                O livro "{{ livro }}" foi editado com sucesso!
+            {% endif %}
+        </div>
+        <div class="alerta_erros">
+            {% if foiCadastrado == False or foiEditado == False %}
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Ops! "{{ livro }}" já existe no seu acervo!
+            {% endif %}
+        </div>
+
+        {% for livro in livros %}
+                
+                <div class="card" style="width: 12rem;">
+                    <div id="nav_edit_delete">
+                        <a href="{% url 'livros:editar' livro.id %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'livros:confirmar-delete' livro.id %}"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <img src="{{ livro.url_imagem }}" style="height: 300px;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        {% if livro.titulo|length > 15 %}
+                            <h5 class="card-title">{{ livro.titulo|truncatechars:15 }}</h5>
+                        {% else %}
+                            <h5 class="card-title">{{ livro.titulo }}</h5>
+                        {% endif %}
+
+                        {% if livro.leu %}
+                            Lido! <i id="check_ok" class="fa-solid fa-circle-check"></i>
+                        {% else %}
+                            Não lido! <i id="check_not_ok" class="fa-solid fa-circle-xmark"></i>
+                        {% endif %}
+                        <a href="{% url 'livros:detalhar' livro.id %}" class="btn btn-primary"><i class="fa-solid fa-heart"></i> Detalhar</a>
+                    </div>
+                </div>  
+        
+        {% endfor %}
+    </div>
+
+{% endblock %}

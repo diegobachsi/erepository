@@ -1,0 +1,61 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Cadastrar{% endblock %}
+
+{% block content %}
+
+<style>
+  
+    p{
+        color: #fff;
+    }
+
+    h5{
+        margin: 30px 0;
+        color: #fff;
+    }
+
+</style>
+
+    <div class="content">
+
+            {% if form.errors %}
+                <div class="alerta_erros">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+
+            {% if is_valid %}
+                <div class="alerta_sucesso">
+                    <i class="far fa-check-circle"></i> 
+                    Livro foi cadastrado com sucesso!
+                </div>
+                <style>
+                    .form-cadastro{
+                        visibility: hidden;
+                    }
+                </style>
+            {% endif %}
+
+            <div class="form-cadastro">
+                <h5><b>CADASTRAR LIVRO</b></h5>
+                <form action="{% url 'livros:cadastrar' %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-input-cadastrar">
+                        <p>{{ form.titulo }}</p>  
+                        <p>{{ form.descricao}}</p> 
+                        <p>{{ form.url_imagem }}</p> 
+                        <p>Leu? {{ form.leu }}</p> 
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+    </div>
+
+
+{% endblock %}

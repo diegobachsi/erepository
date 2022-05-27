@@ -1,0 +1,130 @@
+body{
+    background: #000;
+}
+
+.content{
+    padding-left: 100px;
+    width: 80%;
+}
+
+.nav-items{
+    border-right: 1px solid #aaa;
+}
+
+.content-principal{
+    display: grid !important;
+    grid-template-columns: 25% 75%;
+    height: 100%;
+}
+
+.card{	
+    display: inline-block !important;
+    margin-left: 30px;
+    margin-top: 50px;
+    border: 1px solid #aaa !important;
+}
+
+.content-cards{
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.content-menu{
+    width: 100%;
+    text-align: center;
+}
+
+.card-text{
+    margin-top: 25px;
+    height: 220px;
+    text-align: justify;
+}
+
+.card-body{
+    padding-top: 50px;
+}
+
+i{
+    margin-right: 12px;
+}
+
+#boas-vindas{
+    color: #fff;
+    font-size: 25px;
+    margin-top: 50px;
+}
+
+.nav-link:hover{
+    background-color: rgb(85, 121, 240) !important;
+}
+
+.form-input-cadastrar input[type=text]{
+    width: 420px;
+}
+
+.form-input-cadastrar textarea{
+    display: block;
+    margin-bottom: 20px;
+    height: 150px;
+}
+
+.alerta_sucesso {
+    font-size: 15px;
+    color: #3e881c;
+    padding-top: 25px;
+    text-align: center;
+}
+
+.alerta_erros {
+    font-size: 15px;
+    color: #bd3918;
+    padding-top: 15px;
+    text-align: center;
+}
+
+h6{
+    color: rgb(99, 132, 231);
+}
+
+.fa-bookmark{
+    color: rgb(99, 132, 231);
+}
+
+.fs-4{
+    color:rgb(230, 155, 84)
+}
+
+#i{
+    color: rgb(230, 155, 84)
+}
+
+#logo-centro{
+    padding-top: 80px;
+    font-size: 100px;
+}
+
+#icons{
+    padding-left: 10px;
+    padding-top: 80px;
+    font-size: 50px;
+    color: rgb(230, 155, 84);
+}
+
+.painel-contador{
+    margin: 0 auto;
+    width: 70%;
+    padding: 20px;
+    border: 2px solid rgba(141, 137, 137, 0.2);
+    background-color:rgba(141, 137, 137, 0.1);
+    border-radius: 8px;
+    color: #aaa;
+}
+
+.box-contador{
+   display: inline-block;
+   margin: 0 50px;
+}
+
+.box-contador > progress{
+    width: 100px;
+}

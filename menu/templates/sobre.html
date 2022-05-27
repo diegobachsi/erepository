@@ -1,0 +1,48 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+
+<style>
+
+    p{
+        color: #fff;
+        font-size: 18px;
+        text-align: justify;
+    }
+
+    .content-cards{
+            margin-top: 50px;
+			width: 50%;
+	}
+
+    h1{
+        color: rgb(235, 175, 85);
+    }
+
+</style>
+
+    <div class="content">
+        <div class="card-body">
+            <h1><i class="fa-solid fa-pencil"></i> Tema</h1>
+            <p>Repositório Eletrônico para armazenamento de Filmes, Séries e Livros.</p>
+            </br>
+
+            <h1><i class="fa-solid fa-bullseye"></i> Objetivo</h1>
+            <p>
+                Armazenar catálogos de filmes, séries e livros para um controle pessoal dos que já foram assitidos ou lidos e os que ainda serão.
+                Através do armazenamento podemos gerenciar de forma mais prática os catálogos, gerando um melhor gerenciamento.
+            </p></br>
+
+            <h1><i class="fa-solid fa-user-graduate"></i> Desenvolvedores</h1>
+            <p>
+                <p>Diego Costa Alves RA: 2840481921018</p>
+                <p>Edson Carlos Silveira RA: 2840481921015</p>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

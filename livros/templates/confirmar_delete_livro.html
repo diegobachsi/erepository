@@ -1,0 +1,26 @@
+{% extends 'menu.html' %}
+
+{% load static %}
+
+{% block title %}Deletar{% endblock %}
+
+{% block content %}
+
+<style>
+
+    p{
+        margin-top: 30px;
+        color: #fff;
+    }
+
+</style>
+
+<div class="content">
+    
+        <p>Tem certeza que deseja deletar o livro "{{ titulo }}"?</p>
+        <a href="{% url 'livros:deletar' id %}" class="btn btn-primary">Sim</a>
+        <a href="{% url 'livros:index' %}" class="btn btn-primary">Não</a>
+    
+</div>
+
+{% endblock %}
